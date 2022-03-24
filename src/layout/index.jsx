@@ -1,5 +1,6 @@
-import { Container } from '@mui/material';
 import React, { Fragment } from 'react';
+import { Container } from '@mui/material';
+
 import Footer from './Footer';
 import Header from './Header';
 
