@@ -44,31 +44,8 @@ export const theme = createTheme({
                 disableRipple: true
             }
         },
-        MuiCardContent: {
-            styleOverrides: {
-                root: {
-                    padding: '32px 24px',
-                    '&:last-child': {
-                        paddingBottom: '32px'
-                    }
-                }
-            }
-        },
-        MuiCardHeader: {
-            defaultProps: {
-                titleTypographyProps: {
-                    variant: 'h6'
-                },
-                subheaderTypographyProps: {
-                    variant: 'body2'
-                }
-            },
-            styleOverrides: {
-                root: {
-                    padding: '32px 24px'
-                }
-            }
-        },
+
+
         MuiCssBaseline: {
             styleOverrides: {
                 '*': {
@@ -199,7 +176,7 @@ export const theme = createTheme({
         }
     },
     shape: {
-        borderRadius: 8
+        borderRadius: 4
     },
     shadows: [
         'none',

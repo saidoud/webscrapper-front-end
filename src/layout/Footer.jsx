@@ -12,7 +12,7 @@ function Footer() {
             >
                 <Container maxWidth="xs">
                     <Typography variant="subtitle1" component="p" color="white">
-                        Copyright 2022 Said Ouddou | All Rights Reserved
+                        Copyright 2022 Mediamarkt | All Rights Reserved
                     </Typography>
                 </Container>
             </Box>
