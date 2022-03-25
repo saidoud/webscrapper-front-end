@@ -1,9 +1,7 @@
 import React from 'react';
 import { Box, Card, Grid, CardMedia, Stack, Rating, Typography, Link } from '@mui/material';
 
-import image from './prod-2.jpg';
-
-function ProductCard({ title = 'Product 1', price = 100, imageUrl = image, rating = 3, url = 'https://mui.com/' }) {
+function ProductCard({ title, price, imageUrl, rating, url, ratingNumber }) {
     return (
         <Card>
             <Link href={url}>
@@ -25,7 +23,7 @@ function ProductCard({ title = 'Product 1', price = 100, imageUrl = image, ratin
                     <Grid item xs={12}>
                         <Stack direction="row" alignItems="center" spacing={1}>
                             <Rating precision={1} name="size-small" value={rating} size="small" readOnly />
-                            <Typography variant="caption">({300}+)</Typography>
+                            <Typography variant="caption">({ratingNumber})</Typography>
                         </Stack>
                     </Grid>
                     <Grid item xs={12}>
