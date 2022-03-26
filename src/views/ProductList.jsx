@@ -1,28 +1,36 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Grid } from '@mui/material';
 
 import FilterCatgory from 'components/FilterCatgory';
 import ProductSkeloton from 'components/ui-components/ProductSkeloton';
 import ProductCard from 'components/product/ProductCard';
-import image from 'components/product/prod-2.jpg';
+import { getProduct } from 'service';
 
 function ProductList() {
     const [loading, setLoading] = useState(true);
+    const [selected, setSelected] = useState(0);
     const [products, setProducts] = useState([]);
 
-    const handleCategory = (name) => {
-        console.log(name);
+    const getData = useCallback(async () => {
+        setLoading(true);
+        const data = await getProduct(category[selected].url);
+        setProducts(data);
+        setLoading(false);
+    }, [selected]);
+
+    const handleCategory = (item) => {
+        setSelected(item.id);
     };
 
     useEffect(() => {
-        setProducts(productsApp);
-        return setLoading(false);
-    }, []);
+        getData();
+    }, [getData]);
+
     return (
         <Grid container spacing={4}>
             {/* Category Filter */}
             <Grid item xs={12} md={3}>
-                <FilterCatgory handleCategory={handleCategory} category={category} />
+                <FilterCatgory handleCategory={handleCategory} category={category} selected={selected} />
             </Grid>
             {/* Product List */}
             <Grid item xs={12} md={9}>
@@ -52,66 +60,18 @@ function ProductList() {
 const category = [
     {
         id: 1,
-        name: 'Bath Preparations',
-        url: '#'
+        name: 'Convertibles 2 en 1',
+        url: '/es/category/convertibles-2-en-1-160.html'
     },
     {
         id: 2,
-        name: 'Eye Makeup Preparations',
-        url: '#'
+        name: 'Portátiles de menos de 14"',
+        url: '/es/category/portátiles-de-menos-de-14-155.html'
     },
     {
         id: 3,
-        name: 'Fragrance',
-        url: '#'
-    }
-];
-
-const productsApp = [
-    {
-        id: 1,
-        name: 'Product 1',
-        url: 'https://mui.com/',
-        ratingNumber: 10,
-        rating: 5,
-        imageUrl: image,
-        price: 250
-    },
-    {
-        id: 2,
-        name: 'Product 2',
-        url: 'https://mui.com/',
-        ratingNumber: 10,
-        rating: 5,
-        imageUrl: image,
-        price: 250
-    },
-    {
-        id: 3,
-        name: 'Product 3',
-        url: 'https://mui.com/',
-        ratingNumber: 10,
-        rating: 5,
-        imageUrl: image,
-        price: 250
-    },
-    {
-        id: 4,
-        name: 'Product 4',
-        url: 'https://mui.com/',
-        ratingNumber: 10,
-        rating: 5,
-        imageUrl: image,
-        price: 250
-    },
-    {
-        id: 5,
-        name: 'Product 5',
-        url: 'https://mui.com/',
-        ratingNumber: 10,
-        rating: 5,
-        imageUrl: image,
-        price: 250
+        name: 'Portátiles de 14" a 16.9"',
+        url: '/es/category/portátiles-de-14-a-16-9-156.html'
     }
 ];
 
