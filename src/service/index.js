@@ -18,7 +18,7 @@ export const getProduct = async (category) => {
 
 export const getCategory = async () => {
     try {
-        const result = await axios.get(`${url}/cateory`);
+        const result = await axios.get(`${url}/category`);
         return result.data.data;
     } catch (error) {
         console.log("Error")
