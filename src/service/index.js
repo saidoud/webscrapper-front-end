@@ -1,4 +1,5 @@
 import axios from "axios";
+
 //api URL
 const url = "http://localhost:8080/scrapper";
 

@@ -6,6 +6,8 @@ import ProductSkeloton from 'components/ui-components/ProductSkeloton';
 import ProductCard from 'components/product/ProductCard';
 import { getCategory, getProduct } from 'service';
 
+const url = 'https://www.mediamarkt.es';
+
 function ProductList() {
     const [loading, setLoading] = useState(true);
     const [loadingCategory, setLoadingCategory] = useState(true);
@@ -14,24 +16,44 @@ function ProductList() {
     const [categorys, setCategorys] = useState([]);
 
     // get products
-    const getProductData = useCallback(async () => {
-        setLoading(true);
-        const data = await getProduct(category[selected].url);
-        setProducts(data);
-        setLoading(false);
-    }, [selected]);
+    const getProductData = useCallback(
+        async (link) => {
+            if (categorys.length !== 0) {
+                setLoading(true);
+                // const link = categorys[selected - 1].url;
+                const data = await getProduct(link);
+                setProducts(data);
+                setLoading(false);
+            }
+        },
+        [categorys]
+    );
+
+    // const getProduct = async () => {
+    //     if (categorys.length !== 0) {
+    //         const link = categorys[selected - 1].url;
+    //         const data = await getProduct(link);
+    //         setProducts(data);
+    //         setLoading(false);
+    //     }
+    // };
 
     // get Category
     const getCategoryData = async () => {
         const data = await getCategory();
         setCategorys(data);
         setLoadingCategory(false);
+        console.log(data);
     };
 
     const handleCategory = (item) => {
         setSelected(item.id);
-        getProductData();
+        getProductData(item.url);
     };
+
+    useEffect(() => {
+        getProductData();
+    }, [getProductData]);
 
     useEffect(() => {
         getCategoryData();
@@ -68,7 +90,10 @@ function ProductList() {
                                         imageUrl={item.imageUrl}
                                         rating={item.rating}
                                         ratingNumber={item.ratingNumber}
-                                        url={item.url}
+                                        url={url + item.url}
+                                        specification={item.specifications}
+                                        availibility={item.availibility}
+                                        delivery={item.delivery}
                                     />
                                 </Grid>
                             ))}
@@ -79,23 +104,5 @@ function ProductList() {
         </Grid>
     );
 }
-
-const category = [
-    {
-        id: 1,
-        name: 'Convertibles 2 en 1',
-        url: '/es/category/convertibles-2-en-1-160.html'
-    },
-    {
-        id: 2,
-        name: 'Portátiles de menos de 14"',
-        url: '/es/category/portátiles-de-menos-de-14-155.html'
-    },
-    {
-        id: 3,
-        name: 'Portátiles de 14" a 16.9"',
-        url: '/es/category/portátiles-de-14-a-16-9-156.html'
-    }
-];
 
 export default ProductList;

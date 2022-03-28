@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppBar, Box, Toolbar, Typography, Button } from '@mui/material';
+import { AppBar, Box, Toolbar, Typography } from '@mui/material';
 
 export default function Header() {
     return (
@@ -9,9 +9,6 @@ export default function Header() {
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                         Mediamarkt
                     </Typography>
-                    <Button color="primary" variant="outlined">
-                        Login
-                    </Button>
                 </Toolbar>
             </AppBar>
         </Box>
