@@ -78,14 +78,14 @@ function ProductCard({ title, price, imageUrl, rating, url, ratingNumber, delive
                             <Typography variant="caption">{delivery}</Typography>
                         </Stack>
                     </Grid>
-                    <Grid item xs={12}>
+                    {/* <Grid item xs={12}>
                         <Stack direction={'row'} spacing={1}>
                             <Typography fontWeight={600} variant="caption">
                                 Brand
                             </Typography>
                             <Typography variant="body2">HP</Typography>
                         </Stack>
-                    </Grid>
+                    </Grid> */}
                 </Grid>
             </Box>
             <CardActions disableSpacing>
